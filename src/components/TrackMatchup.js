@@ -10,7 +10,7 @@ import TrackPlayer from './TrackPlayer'
 class TrackMatchup extends Component {
 
   choose(id) {
-    console.log(id)
+    this.props.onChoose(id)
   }
 
   render() {

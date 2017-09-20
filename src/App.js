@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import {
   Grid,
+  Loader,
+  Segment,
 } from 'semantic-ui-react'
 
 import { fetchTrackData } from './data'
@@ -19,6 +21,7 @@ class App extends Component {
   }
 
   _fetchData() {
+    this.setState({ tracks: null })
     fetchTrackData().then(trackData => {
       const randomCategory1 = _randomElement(trackData)
       const randomTrack1 = _randomElement(randomCategory1.tracks)
@@ -50,11 +53,12 @@ class App extends Component {
             ?
             <TrackMatchup
               tracks={this.state.tracks}
+              onChoose={() => { this._fetchData() }}
             />
             :
-            <div>
-              Loading!
-            </div>
+            <Segment basic>
+              <Loader active size='big' />
+            </Segment>
           }
         </Grid.Column>
       </Grid>
