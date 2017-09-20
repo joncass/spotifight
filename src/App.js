@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+import {
+  Grid,
+} from 'semantic-ui-react'
+
 import { fetchTrackData } from './data'
 import TrackMatchup from './components/TrackMatchup'
 
@@ -33,15 +37,27 @@ class App extends Component {
 
   render() {
     return (
-      this.state.tracks
-      ?
-      (
-        <TrackMatchup
-          tracks={this.state.tracks}
-        />
-      )
-      :
-      null
+      <Grid
+        textAlign='center'
+        style={{ height: '100%' }}
+        verticalAlign='middle'
+        columns={2}
+        padded
+      >
+        <Grid.Column>
+          {
+            this.state.tracks
+            ?
+            <TrackMatchup
+              tracks={this.state.tracks}
+            />
+            :
+            <div>
+              Loading!
+            </div>
+          }
+        </Grid.Column>
+      </Grid>
     )
   }
 }
