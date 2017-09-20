@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {
   Grid,
+  Header,
   Loader,
   Segment,
 } from 'semantic-ui-react'
@@ -17,11 +18,15 @@ class App extends Component {
     this.state = {
       tracks: null,
     }
+    this.matchup = 0
+    this.prefs = []
     this._fetchData()
   }
 
   _fetchData() {
     this.setState({ tracks: null })
+    this.matchup = this.matchup + 1
+
     fetchTrackData().then(trackData => {
       const randomCategory1 = _randomElement(trackData)
       const randomTrack1 = _randomElement(randomCategory1.tracks)
@@ -38,6 +43,12 @@ class App extends Component {
     })
   }
 
+  choose(track) {
+    this.prefs.push(track)
+    console.log(this.prefs)
+    this._fetchData()
+  }
+
   render() {
     return (
       <Grid
@@ -48,12 +59,13 @@ class App extends Component {
         padded
       >
         <Grid.Column>
+          <Header>Matchup #{this.matchup}</Header>
           {
             this.state.tracks
             ?
             <TrackMatchup
               tracks={this.state.tracks}
-              onChoose={() => { this._fetchData() }}
+              onChoose={track => { this.choose(track) }}
             />
             :
             <Segment basic>

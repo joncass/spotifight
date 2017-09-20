@@ -20,7 +20,7 @@ class TrackMatchup extends Component {
           <Card.Content>
             <Button
               icon='heart'
-              onClick={() => { this.choose(0) }}
+              onClick={() => { this.choose(this.props.tracks[0]) }}
               size='massive'
               primary
             />
@@ -35,7 +35,7 @@ class TrackMatchup extends Component {
           <Card.Content>
             <Button
               icon='heart'
-              onClick={() => { this.choose(1) }}
+              onClick={() => { this.choose(this.props.tracks[1]) }}
               size='massive'
               primary
             />
