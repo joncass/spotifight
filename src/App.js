@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Sound from 'react-sound'
 
 import { fetchTrackData } from './data'
+import TrackMatchup from './components/TrackMatchup'
 
 const _randomElement = arr => (arr[Math.floor(Math.random()*arr.length)])
 
@@ -9,42 +9,36 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      playStatus: 'STOPPED',
+      tracks: null,
     }
     this._fetchData()
   }
 
   _fetchData() {
     fetchTrackData().then(trackData => {
-      const randomCategory = _randomElement(trackData)
-      console.log('picked', randomCategory.category)
-      const randomTrack = _randomElement(randomCategory.tracks)
-      console.log('picked', randomTrack.name)
-      this.setState({ trackURL: randomTrack.url })
+      const randomCategory1 = _randomElement(trackData)
+      const randomTrack1 = _randomElement(randomCategory1.tracks)
+      const randomCategory2 = _randomElement(trackData)
+      const randomTrack2 = _randomElement(randomCategory2.tracks)
+      this.setState({ tracks: [
+        {
+          url: randomTrack1.url,
+        },
+        {
+          url: randomTrack2.url,
+        },
+      ]})
     })
-  }
-
-  play() {
-    this.setState({ playStatus: 'PLAYING' })
-  }
-
-  pause() {
-    this.setState({ playStatus: 'PAUSED' })
   }
 
   render() {
     return (
-      this.state.trackURL
+      this.state.tracks
       ?
       (
-        <div>
-          <button onClick={this.play.bind(this)}>Play</button>
-          <button onClick={this.pause.bind(this)}>Pause</button>
-          <Sound
-            playStatus={Sound.status[this.state.playStatus]}
-            url={this.state.trackURL}
-          />
-        </div>
+        <TrackMatchup
+          tracks={this.state.tracks}
+        />
       )
       :
       null
