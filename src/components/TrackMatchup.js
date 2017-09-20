@@ -1,26 +1,54 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
-  Segment,
+  Button,
+  Card,
 } from 'semantic-ui-react'
 
 import TrackPlayer from './TrackPlayer'
 
-const TrackMatchup = ({
-  tracks
-}) => (
-  <Segment.Group horizontal>
-    <Segment>
-      <TrackPlayer
-        track={tracks[0]}
-      />
-    </Segment>
-    <Segment>
-      <TrackPlayer
-        track={tracks[1]}
-      />
-    </Segment>
-  </Segment.Group>
-)
+class TrackMatchup extends Component {
+
+  choose(id) {
+    console.log(id)
+  }
+
+  render() {
+    return (
+      <Card.Group>
+        <Card>
+          <Card.Content>
+            <Button
+              icon='heart'
+              onClick={() => { this.choose(0) }}
+              size='massive'
+              primary
+            />
+          </Card.Content>
+          <Card.Content>
+            <TrackPlayer
+              track={this.props.tracks[0]}
+            />
+          </Card.Content>
+        </Card>
+        <Card>
+          <Card.Content>
+            <Button
+              icon='heart'
+              onClick={() => { this.choose(1) }}
+              size='massive'
+              primary
+            />
+          </Card.Content>
+          <Card.Content>
+            <TrackPlayer
+              track={this.props.tracks[1]}
+            />
+          </Card.Content>
+        </Card>
+      </Card.Group>
+    )
+  }
+}
 
 export default TrackMatchup

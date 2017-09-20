@@ -30,9 +30,9 @@ class TrackPlayer extends Component {
     return (
       <div>
         <Button.Group labeled>
-          <Button icon='play' content='Play' onClick={this.play.bind(this)} />
-          <Button icon='pause' content='Pause' onClick={this.pause.bind(this)} />
-          <Button icon='stop' content='Stop' onClick={this.stop.bind(this)} />
+          <Button icon='play' onClick={this.play.bind(this)} />
+          <Button icon='pause' onClick={this.pause.bind(this)} />
+          <Button icon='stop' onClick={this.stop.bind(this)} />
         </Button.Group>
         <Sound
           playStatus={Sound.status[this.state.playStatus]}
