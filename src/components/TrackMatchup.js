@@ -28,6 +28,8 @@ class TrackMatchup extends Component {
           <Card.Content>
             <TrackPlayer
               track={this.props.tracks[0]}
+              ref="trackPlayer0"
+              onPlay={() => { this.refs.trackPlayer1.pause() }}
             />
           </Card.Content>
         </Card>
@@ -43,6 +45,8 @@ class TrackMatchup extends Component {
           <Card.Content>
             <TrackPlayer
               track={this.props.tracks[1]}
+              ref="trackPlayer1"
+              onPlay={() => { this.refs.trackPlayer0.pause() }}
             />
           </Card.Content>
         </Card>

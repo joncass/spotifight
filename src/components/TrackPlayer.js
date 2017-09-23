@@ -16,6 +16,9 @@ class TrackPlayer extends Component {
 
   play() {
     this.setState({ playStatus: 'PLAYING' })
+    if (this.props.onPlay) {
+      this.props.onPlay()
+    }
   }
 
   pause() {
