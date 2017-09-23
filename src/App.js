@@ -36,7 +36,8 @@ class App extends Component {
         const randomTrack = _randomElement(randomCategory.tracks)
         this.currentRoundTracks.push({ url: randomTrack.url })
       }
-
+      this.numberOfRounds = Math.log(this.currentRoundTracks.length) / Math.log(2)
+      this.matchupsThisRound = this.currentRoundTracks.length / 2
       this._createMatchup()
     })
   }
@@ -52,6 +53,7 @@ class App extends Component {
 
   _newRound() {
     this.currentRoundTracks = this.nextRoundTracks.slice()
+    this.matchupsThisRound = this.currentRoundTracks.length / 2
     this.nextRoundTracks = []
     this._createMatchup()
 
@@ -93,8 +95,8 @@ class App extends Component {
           </div>
           :
           <Grid.Column>
-            <Header as='h1'>Round {this.round}</Header>
-            <Header as='h3'>Matchup {this.matchup}</Header>
+            <Header as='h1'>Round {this.round} of {this.numberOfRounds}</Header>
+            <Header as='h3'>Matchup {this.matchup} of {this.matchupsThisRound}</Header>
             {
               this.state.tracks
               ?
