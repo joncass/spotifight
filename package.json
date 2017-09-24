@@ -6,6 +6,7 @@
     "url" : "https://github.com/joncass/spotifight.git"
   },
   "license": "MIT",
+  "homepage": ".",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
