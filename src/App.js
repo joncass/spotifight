@@ -9,6 +9,7 @@ import {
 
 import { fetchTrackData } from './data'
 import TrackMatchup from './components/TrackMatchup'
+import Winner from './components/Winner'
 
 const _randomElement = arr => (arr[Math.floor(Math.random()*arr.length)])
 const POOL_SIZE = 16
@@ -34,7 +35,7 @@ class App extends Component {
       while (this.currentRoundTracks.length < POOL_SIZE) {
         const randomCategory = _randomElement(trackData)
         const randomTrack = _randomElement(randomCategory.tracks)
-        this.currentRoundTracks.push({ url: randomTrack.url })
+        this.currentRoundTracks.push(randomTrack)
       }
       this.numberOfRounds = Math.log(this.currentRoundTracks.length) / Math.log(2)
       this.matchupsThisRound = this.currentRoundTracks.length / 2
@@ -87,30 +88,30 @@ class App extends Component {
         columns={2}
         padded
       >
-        {
-          this.state.winner
-          ?
-          <div>
-            We have a <a href={this.state.winner.url}>winner!</a>
-          </div>
-          :
-          <Grid.Column>
-            <Header as='h1'>Round {this.round} of {this.numberOfRounds}</Header>
-            <Header as='h3'>Matchup {this.matchup} of {this.matchupsThisRound}</Header>
-            {
-              this.state.tracks
-              ?
-              <TrackMatchup
-                tracks={this.state.tracks}
-                onChoose={track => { this.choose(track) }}
-              />
-              :
-              <Segment basic>
-                <Loader active size='big' />
-              </Segment>
-            }
+        <Grid.Column>
+          {
+            this.state.winner
+            ?
+            <Winner winner={this.state.winner} />
+            :
+            <div>
+              <Header as='h1'>Round {this.round} of {this.numberOfRounds}</Header>
+              <Header as='h3'>Matchup {this.matchup} of {this.matchupsThisRound}</Header>
+              {
+                this.state.tracks
+                ?
+                <TrackMatchup
+                  tracks={this.state.tracks}
+                  onChoose={track => { this.choose(track) }}
+                />
+                :
+                <Segment basic>
+                  <Loader active size='big' />
+                </Segment>
+              }
+            </div>
+          }
           </Grid.Column>
-        }
       </Grid>
     )
   }
