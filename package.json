@@ -1,7 +1,11 @@
 {
-  "name": "bracket",
+  "name": "spotifight",
   "version": "0.1.0",
-  "private": true,
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/joncass/spotifight.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
