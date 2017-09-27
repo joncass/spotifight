@@ -2,8 +2,8 @@
   "name": "spotifight",
   "version": "0.1.0",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/joncass/spotifight.git"
+    "type": "git",
+    "url": "https://github.com/joncass/spotifight.git"
   },
   "license": "MIT",
   "homepage": ".",
@@ -11,6 +11,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-sound": "^0.8.0",
+    "rimraf": "^2.6.2",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.73.1",
     "spotify-web-api-node": "^2.5.0"

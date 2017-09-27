@@ -1,3 +1,5 @@
+const fs = require('fs')
+const rimraf = require('rimraf')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 const apiSecrets = require('../secrets/spotifyWebAPI')
@@ -9,6 +11,12 @@ const IGNORE_CATEGORIES = [
   'sleep',
   'inspirational',
 ]
+
+const DATA_FILE_FOLDER = 'src/data/'
+const DATA_FILE_SUFFIX = '.js'
+
+rimraf.sync(DATA_FILE_FOLDER)
+fs.mkdirSync(DATA_FILE_FOLDER)
 
 spotifyApi.clientCredentialsGrant().then(
   data => {
@@ -40,11 +48,11 @@ spotifyApi.clientCredentialsGrant().then(
                       artist: track.track.artists[0].name,
                     })
                   ).filter(track => (track.url))
-                  console.log({
-                    category: category.id,
-                    tracks: trackData,
-                  })
-                  console.log(',')
+
+                  fs.writeFileSync(
+                    DATA_FILE_FOLDER + category.id + DATA_FILE_SUFFIX,
+                    'export default ' + JSON.stringify(trackData)
+                  )
                 },
                 err => {
                   console.log('Error retrieving tracks for playlist:', err)

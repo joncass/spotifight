@@ -32,9 +32,11 @@ class App extends Component {
 
   _fetchData() {
     fetchTrackData().then(trackData => {
+      const categories = Object.keys(trackData)
       while (this.currentRoundTracks.length < POOL_SIZE) {
-        const category = trackData[this.currentRoundTracks.length % trackData.length]
-        const randomTrack = _randomElement(category.tracks)
+        const category = categories[this.currentRoundTracks.length % categories.length]
+        const tracks = trackData[category]
+        const randomTrack = _randomElement(tracks)
         this.currentRoundTracks.push(randomTrack)
       }
       this.numberOfRounds = Math.log(this.currentRoundTracks.length) / Math.log(2)
