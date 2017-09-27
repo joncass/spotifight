@@ -11,7 +11,7 @@ import latin from './data/latin'
 import mood from './data/mood'
 import party from './data/party'
 import pop from './data/pop'
-import rnd from './data/rnd'
+import rnb from './data/rnb'
 import rock from './data/rock'
 import workout from './data/workout'
 
@@ -29,7 +29,7 @@ const trackData = {
   mood,
   party,
   pop,
-  rnd,
+  rnb,
   rock,
   workout,
 }
