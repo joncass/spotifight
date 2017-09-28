@@ -11,13 +11,14 @@ class TrackPlayer extends Component {
     this.state = {
       playStatus: 'STOPPED',
     }
+
+    this.onPlay = this.props.onPlay || ( () => {} )
+    this.track = this.props.track
   }
 
   play() {
+    this.onPlay()
     this.setState({ playStatus: 'PLAYING' })
-    if (this.props.onPlay) {
-      this.props.onPlay()
-    }
   }
 
   pause() {
@@ -36,7 +37,7 @@ class TrackPlayer extends Component {
         <Button icon='stop' onClick={this.stop.bind(this)} />
         <Sound
           playStatus={Sound.status[this.state.playStatus]}
-          url={this.props.track.url}
+          url={this.track.url}
         />
       </Button.Group>
     )
