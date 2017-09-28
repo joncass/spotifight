@@ -10,7 +10,6 @@ class TrackPlayer extends Component {
     super(props)
     this.state = {
       playStatus: 'STOPPED',
-      track: props.track,
     }
   }
 
@@ -31,17 +30,15 @@ class TrackPlayer extends Component {
 
   render() {
     return (
-      <div>
-        <Button.Group labeled>
-          <Button icon='play' onClick={this.play.bind(this)} />
-          <Button icon='pause' onClick={this.pause.bind(this)} />
-          <Button icon='stop' onClick={this.stop.bind(this)} />
-        </Button.Group>
+      <Button.Group labeled>
+        <Button icon='play' onClick={this.play.bind(this)} />
+        <Button icon='pause' onClick={this.pause.bind(this)} />
+        <Button icon='stop' onClick={this.stop.bind(this)} />
         <Sound
           playStatus={Sound.status[this.state.playStatus]}
-          url={this.state.track.url}
+          url={this.props.track.url}
         />
-      </div>
+      </Button.Group>
     )
   }
 }
