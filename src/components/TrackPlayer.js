@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Sound from 'react-sound'
 
 import {
@@ -42,6 +43,16 @@ class TrackPlayer extends Component {
       </Button.Group>
     )
   }
+}
+
+TrackPlayer.propTypes = {
+  onPlay: PropTypes.func,
+  track: PropTypes.shape({
+    artist: PropTypes.string,
+    imageURL: PropTypes.string,
+    name: PropTypes.string,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default TrackPlayer
