@@ -18,7 +18,7 @@ describe('TrackPlayer', () => {
   beforeEach(() => {
     onPlay = jest.fn()
     track = {
-      url: 'http://some.url.com'
+      url: 'http://some.url.com',
     }
 
     trackPlayer = mount(
