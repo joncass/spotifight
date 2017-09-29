@@ -17,7 +17,9 @@
     "semantic-ui-react": "^0.73.1",
     "spotify-web-api-node": "^2.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "enzyme": "^3.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
