@@ -1,5 +1,5 @@
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import Contender from './Contender'
@@ -28,7 +28,7 @@ describe('Matchup', () => {
 
     onChooseContender = jest.fn()
 
-    matchup = shallow(
+    matchup = mount(
       <Matchup
         onChooseContender={onChooseContender}
         contenders={contenders}
@@ -67,5 +67,32 @@ describe('Matchup', () => {
     secondContender.props().onChoose()
     expect(onChooseContender).toHaveBeenCalledTimes(1)
     expect(onChooseContender).toHaveBeenCalledWith(contenders[1])
+  })
+
+  it('pauses each contender when other is played', () => {
+    expect(
+      matchup.instance().refs.firstContender.refs.trackPlayer.state.playStatus
+    ).toBe('STOPPED')
+    expect(
+      matchup.instance().refs.secondContender.refs.trackPlayer.state.playStatus
+    ).toBe('STOPPED')
+
+    matchup.instance().refs.firstContender.refs.trackPlayer.play()
+
+    expect(
+      matchup.instance().refs.firstContender.refs.trackPlayer.state.playStatus
+    ).toBe('PLAYING')
+    expect(
+      matchup.instance().refs.secondContender.refs.trackPlayer.state.playStatus
+    ).toBe('PAUSED')
+
+    matchup.instance().refs.secondContender.refs.trackPlayer.play()
+
+    expect(
+      matchup.instance().refs.firstContender.refs.trackPlayer.state.playStatus
+    ).toBe('PAUSED')
+    expect(
+      matchup.instance().refs.secondContender.refs.trackPlayer.state.playStatus
+    ).toBe('PLAYING')
   })
 })

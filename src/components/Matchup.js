@@ -20,14 +20,18 @@ class Matchup extends Component {
       <Segment.Group horizontal>
         <Segment>
           <Contender
-            onChoose={() => this.onChooseContender(this.firstContender)}
+            ref="firstContender"
             track={this.firstContender}
+            onChoose={() => this.onChooseContender(this.firstContender)}
+            onPlay={() => this.refs.secondContender.pause()}
           />
         </Segment>
         <Segment>
           <Contender
-            onChoose={() => this.onChooseContender(this.secondContender)}
+            ref="secondContender"
             track={this.secondContender}
+            onChoose={() => this.onChooseContender(this.secondContender)}
+            onPlay={() => this.refs.firstContender.pause()}
           />
         </Segment>
       </Segment.Group>
