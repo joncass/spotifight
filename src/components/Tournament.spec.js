@@ -101,4 +101,8 @@ describe('Tournament', () => {
     )
   })
 
+  it('can declare a winner', () => {
+    tournament.instance().declareWinner(tracks[1])
+    expect(tournament.instance().state.winner).toEqual(tracks[1])
+  })
 })
