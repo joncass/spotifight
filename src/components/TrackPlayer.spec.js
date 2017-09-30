@@ -81,4 +81,14 @@ describe('TrackPlayer', () => {
     stopButton.simulate('click')
     expect(stopFn).toHaveBeenCalledTimes(1)
   })
+
+  it('alters state when the buttons are pressed', () => {
+    expect(trackPlayer.instance().state.playStatus).toBe('STOPPED')
+    trackPlayer.find(Button.Group).find(Button).at(0).simulate('click')
+    expect(trackPlayer.instance().state.playStatus).toBe('PLAYING')
+    trackPlayer.find(Button.Group).find(Button).at(1).simulate('click')
+    expect(trackPlayer.instance().state.playStatus).toBe('PAUSED')
+    trackPlayer.find(Button.Group).find(Button).at(2).simulate('click')
+    expect(trackPlayer.instance().state.playStatus).toBe('STOPPED')
+  })
 })
