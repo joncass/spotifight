@@ -1,5 +1,5 @@
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import {
@@ -24,7 +24,7 @@ describe('Contender', () => {
 
     onChoose = jest.fn()
 
-    contender = shallow(
+    contender = mount(
       <Contender
         onChoose={onChoose}
         track={track}
@@ -38,10 +38,19 @@ describe('Contender', () => {
   })
 
   it('renders a Button that calls onChoose when clicked', () => {
-    const heartButton = contender.find(Button)
+    const heartButton = contender.find(Button).first()
 
     expect(onChoose).not.toHaveBeenCalled()
     heartButton.simulate('click')
     expect(onChoose).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls the TrackPlayer pause when pause is called', () => {
+    const trackPlayerPause = jest.fn()
+    contender.instance().refs.trackPlayer.pause = trackPlayerPause
+
+    expect(trackPlayerPause).not.toHaveBeenCalled()
+    contender.instance().pause()
+    expect(trackPlayerPause).toHaveBeenCalledTimes(1)
   })
 })

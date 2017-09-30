@@ -15,6 +15,10 @@ class Contender extends Component {
     this.track = this.props.track
   }
 
+  pause() {
+    this.refs.trackPlayer.pause()
+  }
+
   render() {
     return (
       <Segment>
@@ -25,6 +29,7 @@ class Contender extends Component {
           primary
         />
         <TrackPlayer
+          ref="trackPlayer"
           track={this.track}
         />
       </Segment>
