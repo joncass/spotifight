@@ -97,4 +97,11 @@ describe('Tournament', () => {
     )
   })
 
+  it('has the correct initial state', () => {
+    expect(tournament.instance().state).toEqual({
+      currentMatchupIndex: 0,
+      currentRoundIndex: 0,
+    })
+  })
+
 })
