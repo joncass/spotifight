@@ -3,7 +3,6 @@ import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import {
-  Container,
   Header,
   Image,
 } from 'semantic-ui-react'
