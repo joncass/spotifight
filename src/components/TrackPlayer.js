@@ -11,10 +11,16 @@ class TrackPlayer extends Component {
     super(props)
     this.state = {
       playStatus: 'STOPPED',
+      track: this.props.track,
     }
 
     this.onPlay = this.props.onPlay || ( () => {} )
-    this.track = this.props.track
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      track: nextProps.track,
+    })
   }
 
   play() {
@@ -38,7 +44,7 @@ class TrackPlayer extends Component {
         <Button icon='stop' onClick={() => this.stop()} />
         <Sound
           playStatus={Sound.status[this.state.playStatus]}
-          url={this.track.url}
+          url={this.state.track.url}
         />
       </Button.Group>
     )

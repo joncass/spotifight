@@ -14,7 +14,15 @@ class Contender extends Component {
 
     this.onChoose = this.props.onChoose
     this.onPlay = this.props.onPlay
-    this.track = this.props.track
+    this.state = {
+      track: this.props.track,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      track: nextProps.track,
+    })
   }
 
   pause() {
@@ -33,7 +41,7 @@ class Contender extends Component {
         <TrackPlayer
           ref="trackPlayer"
           onPlay={() => this.onPlay()}
-          track={this.track}
+          track={this.state.track}
         />
       </Segment>
     )

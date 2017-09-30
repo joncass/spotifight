@@ -10,9 +10,19 @@ import Contender from './Contender'
 class Matchup extends Component {
   constructor(props) {
     super(props)
+
     this.onChooseContender = this.props.onChooseContender
-    this.firstContender = this.props.contenders[0]
-    this.secondContender = this.props.contenders[1]
+    this.state = {
+      firstContender: this.props.contenders[0],
+      secondContender: this.props.contenders[1],
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      firstContender: nextProps.contenders[0],
+      secondContender: nextProps.contenders[1],
+    })
   }
 
   render() {
@@ -21,7 +31,7 @@ class Matchup extends Component {
         <Segment>
           <Contender
             ref="firstContender"
-            track={this.firstContender}
+            track={this.state.firstContender}
             onChoose={() => this.onChooseContender(0)}
             onPlay={() => this.refs.secondContender.pause()}
           />
@@ -29,7 +39,7 @@ class Matchup extends Component {
         <Segment>
           <Contender
             ref="secondContender"
-            track={this.secondContender}
+            track={this.state.secondContender}
             onChoose={() => this.onChooseContender(1)}
             onPlay={() => this.refs.firstContender.pause()}
           />
