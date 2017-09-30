@@ -81,10 +81,20 @@ describe('Tournament', () => {
   })
 
   it('divides the passed in tracks into matchups', () => {
-    const state = tournament.instance().state
-    expect(state.rounds.length).toBe(1)
-    expect(state.rounds[0].matchups.length).toBe(2)
-    expect(state.rounds[0].currentMatchup).toBe(0)
+    expect(
+      tournament.instance().matchups
+    ).toEqual(
+      [
+        {
+          tracks: [tracks[3], tracks[2]],
+          winner: null,
+        },
+        {
+          tracks: [tracks[1], tracks[0]],
+          winner: null,
+        },
+      ]
+    )
   })
 
 })
