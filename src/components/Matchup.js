@@ -22,7 +22,7 @@ class Matchup extends Component {
           <Contender
             ref="firstContender"
             track={this.firstContender}
-            onChoose={() => this.onChooseContender(this.firstContender)}
+            onChoose={() => this.onChooseContender(0)}
             onPlay={() => this.refs.secondContender.pause()}
           />
         </Segment>
@@ -30,7 +30,7 @@ class Matchup extends Component {
           <Contender
             ref="secondContender"
             track={this.secondContender}
-            onChoose={() => this.onChooseContender(this.secondContender)}
+            onChoose={() => this.onChooseContender(1)}
             onPlay={() => this.refs.firstContender.pause()}
           />
         </Segment>

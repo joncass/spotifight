@@ -57,7 +57,7 @@ describe('Matchup', () => {
     expect(onChooseContender).not.toHaveBeenCalled()
     firstContender.props().onChoose()
     expect(onChooseContender).toHaveBeenCalledTimes(1)
-    expect(onChooseContender).toHaveBeenCalledWith(contenders[0])
+    expect(onChooseContender).toHaveBeenCalledWith(0)
   })
 
   it('passes onChoose prop to secondContender appropriately', () => {
@@ -66,7 +66,7 @@ describe('Matchup', () => {
     expect(onChooseContender).not.toHaveBeenCalled()
     secondContender.props().onChoose()
     expect(onChooseContender).toHaveBeenCalledTimes(1)
-    expect(onChooseContender).toHaveBeenCalledWith(contenders[1])
+    expect(onChooseContender).toHaveBeenCalledWith(1)
   })
 
   it('pauses each contender when other is played', () => {
