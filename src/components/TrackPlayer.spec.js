@@ -82,13 +82,23 @@ describe('TrackPlayer', () => {
     expect(stopFn).toHaveBeenCalledTimes(1)
   })
 
-  it('alters state when the buttons are pressed', () => {
+  it('alters state when the functions are called', () => {
     expect(trackPlayer.instance().state.playStatus).toBe('STOPPED')
-    trackPlayer.find(Button.Group).find(Button).at(0).simulate('click')
+    trackPlayer.instance().play()
     expect(trackPlayer.instance().state.playStatus).toBe('PLAYING')
-    trackPlayer.find(Button.Group).find(Button).at(1).simulate('click')
+    trackPlayer.instance().pause()
     expect(trackPlayer.instance().state.playStatus).toBe('PAUSED')
-    trackPlayer.find(Button.Group).find(Button).at(2).simulate('click')
+    trackPlayer.instance().stop()
     expect(trackPlayer.instance().state.playStatus).toBe('STOPPED')
+  })
+
+  it('can handle play even if onPlay is not passed in', () => {
+    const wrapper = mount(
+      <TrackPlayer
+        track={track}
+      />
+    )
+    wrapper.instance().play()
+    expect(wrapper.instance().state.playStatus).toBe('PLAYING')
   })
 })
