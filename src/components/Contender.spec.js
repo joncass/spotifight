@@ -2,14 +2,14 @@ import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-Enzyme.configure({ adapter: new Adapter() })
-
 import {
   Button,
 } from 'semantic-ui-react'
 
 import Contender from './Contender'
 import TrackPlayer from './TrackPlayer'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('Contender', () => {
   let contender, track, onChoose

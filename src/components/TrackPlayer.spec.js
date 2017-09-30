@@ -2,8 +2,6 @@ import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-Enzyme.configure({ adapter: new Adapter() })
-
 import Sound from 'react-sound'
 
 import {
@@ -11,6 +9,8 @@ import {
 } from 'semantic-ui-react'
 
 import TrackPlayer from './TrackPlayer'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('TrackPlayer', () => {
   let trackPlayer, track, onPlay

@@ -2,8 +2,6 @@ import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
-Enzyme.configure({ adapter: new Adapter() })
-
 import {
   Container,
   Header,
@@ -11,6 +9,8 @@ import {
 } from 'semantic-ui-react'
 
 import TrackInfo from './TrackInfo'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('TrackInfo', () => {
   let trackInfo, track
