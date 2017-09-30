@@ -11,7 +11,9 @@ import TrackPlayer from './TrackPlayer'
 class Contender extends Component {
   constructor(props) {
     super(props)
+
     this.onChoose = this.props.onChoose
+    this.onPlay = this.props.onPlay
     this.track = this.props.track
   }
 
@@ -30,6 +32,7 @@ class Contender extends Component {
         />
         <TrackPlayer
           ref="trackPlayer"
+          onPlay={() => this.onPlay()}
           track={this.track}
         />
       </Segment>
@@ -38,6 +41,7 @@ class Contender extends Component {
 }
 
 Contender.propTypes = {
+  onPlay: PropTypes.func.isRequired,
   onChoose: PropTypes.func.isRequired,
   track: PropTypes.shape({
     artist: PropTypes.string.isRequired,

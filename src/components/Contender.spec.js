@@ -12,7 +12,7 @@ import TrackPlayer from './TrackPlayer'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('Contender', () => {
-  let contender, track, onChoose
+  let contender, track, onChoose, onPlay
 
   beforeEach(() => {
     track = {
@@ -23,10 +23,12 @@ describe('Contender', () => {
     }
 
     onChoose = jest.fn()
+    onPlay = jest.fn()
 
     contender = mount(
       <Contender
         onChoose={onChoose}
+        onPlay={onPlay}
         track={track}
       />
     )
@@ -35,6 +37,12 @@ describe('Contender', () => {
   it('renders a TrackPlayer', () => {
     const trackPlayer = contender.find(TrackPlayer)
     expect(trackPlayer.props().track).toEqual(track)
+  })
+
+  it('passes onPlay to its TrackPlayer', () => {
+    expect(onPlay).not.toHaveBeenCalled()
+    contender.find(TrackPlayer).props().onPlay()
+    expect(onPlay).toHaveBeenCalledTimes(1)
   })
 
   it('renders a Button that calls onChoose when clicked', () => {
