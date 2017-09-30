@@ -1,12 +1,9 @@
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 
 import Winner from './Winner'
 import TrackInfo from './TrackInfo'
 import TrackPlayer from './TrackPlayer'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('Winner', () => {
   let winnerComponent, track

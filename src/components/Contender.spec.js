@@ -1,6 +1,5 @@
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 
 import {
   Button,
@@ -8,8 +7,6 @@ import {
 
 import Contender from './Contender'
 import TrackPlayer from './TrackPlayer'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('Contender', () => {
   let contender, track, onChoose, onPlay

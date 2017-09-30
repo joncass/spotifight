@@ -6,6 +6,11 @@ import {
   Button,
 } from 'semantic-ui-react'
 
+// Suppress console output
+// See: https://github.com/leoasis/react-sound/issues/13
+// eslint-disable-next-line no-undef
+soundManager.setup({ debugMode: false })
+
 class TrackPlayer extends Component {
   constructor(props) {
     super(props)

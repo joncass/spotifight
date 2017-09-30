@@ -1,11 +1,8 @@
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 
 import Contender from './Contender'
 import Matchup from './Matchup'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('Matchup', () => {
   let matchup, contenders, onChooseContender
