@@ -77,6 +77,13 @@ describe('Tournament', () => {
     expect(() => shallow(<Tournament tracks={tracks3} />)).toThrow()
   })
 
+  it('has the correct initial state', () => {
+    expect(tournament.instance().state).toEqual({
+      currentMatchupIndex: 0,
+      currentRoundIndex: 0,
+    })
+  })
+
   it('divides the passed in tracks into matchups', () => {
     expect(
       tournament.instance().matchups
@@ -92,13 +99,6 @@ describe('Tournament', () => {
         },
       ]
     )
-  })
-
-  it('has the correct initial state', () => {
-    expect(tournament.instance().state).toEqual({
-      currentMatchupIndex: 0,
-      currentRoundIndex: 0,
-    })
   })
 
 })
