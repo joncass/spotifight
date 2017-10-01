@@ -3,6 +3,7 @@ import Enzyme, { mount } from 'enzyme'
 
 import Matchup from './Matchup'
 import Tournament from './Tournament'
+import Winner from './Winner'
 
 describe('Tournament', () => {
   let tournament, tracks
@@ -80,6 +81,9 @@ describe('Tournament', () => {
       currentRoundIndex: 0,
       winner: tracks1[0],
     })
+
+    expect(shortCircuitedTournament.find(Winner)).toHaveLength(1)
+    expect(shortCircuitedTournament.find(Matchup)).toHaveLength(0)
   })
 
   it('divides the passed in tracks into matchups', () => {
@@ -105,6 +109,9 @@ describe('Tournament', () => {
   })
 
   it('correctly plays a tournament', () => {
+    expect(tournament.find(Winner)).toHaveLength(0)
+    expect(tournament.find(Matchup)).toHaveLength(1)
+
     tournament.instance().selectWinnerForCurrentMatchup(0)
     expect(tournament.instance().state).toEqual({
       currentMatchupIndex: 1,
