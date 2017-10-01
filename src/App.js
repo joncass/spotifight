@@ -8,25 +8,28 @@ import { fetchTrackData } from './data'
 import Tournament from './components/Tournament'
 
 const _randomElement = arr => (arr[Math.floor(Math.random()*arr.length)])
-const POOL_SIZE = 16
+export const POOL_SIZE = 16
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {}
 
-    fetchTrackData().then(trackData => {
-      const categories = Object.keys(trackData)
-      const tournamentTracks = []
+    this.initialized = new Promise((resolve, reject) => {
+      fetchTrackData().then(trackData => {
+        const categories = Object.keys(trackData)
+        const tournamentTracks = []
 
-      while (tournamentTracks.length < POOL_SIZE) {
-        const category = categories[tournamentTracks.length % categories.length]
-        const tracks = trackData[category]
-        const randomTrack = _randomElement(tracks)
-        tournamentTracks.push(randomTrack)
-      }
+        while (tournamentTracks.length < POOL_SIZE) {
+          const category = categories[tournamentTracks.length % categories.length]
+          const tracks = trackData[category]
+          const randomTrack = _randomElement(tracks)
+          tournamentTracks.push(randomTrack)
+        }
 
-      this.setState({ tournamentTracks })
+        this.setState({ tournamentTracks })
+        resolve()
+      })
     })
   }
 
