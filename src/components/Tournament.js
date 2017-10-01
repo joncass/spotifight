@@ -8,17 +8,23 @@ class Tournament extends Component {
   constructor(props) {
     super(props)
 
-    const trackLength = props.tracks.length
-    if (trackLength && (trackLength & (trackLength - 1))) {
-      throw new Error("Invalid number of tracks (must be power of 2).")
-    }
-
-    this.matchups = this.createMatchups(props.tracks)
+    this.initializeMatchups(props.tracks)
 
     this.state = {
       currentRoundIndex: 0,
       currentMatchupIndex: 0,
+      // if there are no matchups after initializeMatchups, it means
+      // there's only a single track, so we declare it winner
+      winner: this.matchups.length ? null : props.tracks[0]
     }
+  }
+
+  initializeMatchups(tracks) {
+    // round the tracks to have length a power of 2
+    const sliceEnd = 2**Math.floor(Math.log2(tracks.length))
+    const slicedTracks = tracks.slice(0, sliceEnd)
+
+    this.matchups = this.createMatchups(slicedTracks)
   }
 
   /**
@@ -27,11 +33,10 @@ class Tournament extends Component {
    * @param {array} tracks - The tracks to divide into matchups.
    */
   createMatchups(tracks) {
-    const tracksCopy = tracks.slice()
     const matchups = []
-    while (tracksCopy.length) {
+    while (tracks.length > 1) {
       matchups.push({
-        tracks: [ tracksCopy.pop(), tracksCopy.pop() ],
+        tracks: [ tracks.pop(), tracks.pop() ],
         winner: null,
       })
     }
