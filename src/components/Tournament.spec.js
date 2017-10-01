@@ -1,6 +1,7 @@
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 
+import Matchup from './Matchup'
 import Tournament from './Tournament'
 
 describe('Tournament', () => {
@@ -122,5 +123,15 @@ describe('Tournament', () => {
       currentRoundIndex: 1,
       winner: tracks[3],
     })
+  })
+
+  it('passes selectWinnerForCurrentMatchup as onChooseContender', () => {
+    const mockSelectWinner = jest.fn()
+    tournament.instance().selectWinnerForCurrentMatchup = mockSelectWinner
+
+    expect(mockSelectWinner).not.toHaveBeenCalled()
+    tournament.find(Matchup).props().onChooseContender(1)
+    expect(mockSelectWinner).toHaveBeenCalledTimes(1)
+    expect(mockSelectWinner).toHaveBeenCalledWith(1)
   })
 })
