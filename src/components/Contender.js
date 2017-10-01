@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {
   Button,
-  Segment,
+  Card,
 } from 'semantic-ui-react'
 
 import TrackPlayer from './TrackPlayer'
@@ -31,19 +31,21 @@ class Contender extends Component {
 
   render() {
     return (
-      <Segment>
+      <Card>
         <Button
           icon='heart'
           onClick={() => this.onChoose()}
           size='massive'
           primary
         />
-        <TrackPlayer
-          ref="trackPlayer"
-          onPlay={() => this.onPlay()}
-          track={this.state.track}
-        />
-      </Segment>
+        <Card.Content>
+          <TrackPlayer
+            ref="trackPlayer"
+            onPlay={() => this.onPlay()}
+            track={this.state.track}
+          />
+        </Card.Content>
+      </Card>
     )
   }
 }

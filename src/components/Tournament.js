@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import {
+  Container,
+  Step,
+} from 'semantic-ui-react'
+
 import Matchup from './Matchup'
 import Winner from './Winner'
 
@@ -88,22 +93,28 @@ class Tournament extends Component {
     const matchup = this.state.currentMatchupIndex + 1
 
     return (
-      <div>
+      <Container>
         {
           this.state.winner
           ?
           <Winner track={this.state.winner} />
           :
-          <div>
-            <div>Round {round}</div>
-            <div>Matchup {matchup}</div>
+          <Container>
+            <Step.Group size="massive">
+              <Step>
+                <Step.Content title={`Round ${round}`} />
+              </Step>
+              <Step>
+                <Step.Content title={`Matchup ${matchup}`} />
+              </Step>
+            </Step.Group>
             <Matchup
               contenders={this.matchups[this.state.currentMatchupIndex].tracks}
               onChooseContender={index => this.selectWinnerForCurrentMatchup(index)}
             />
-          </div>
+          </Container>
         }
-      </div>
+      </Container>
     )
   }
 }

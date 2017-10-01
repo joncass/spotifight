@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  Segment,
+  List,
 } from 'semantic-ui-react'
 
 import Contender from './Contender'
@@ -27,24 +27,24 @@ class Matchup extends Component {
 
   render() {
     return (
-      <Segment.Group horizontal>
-        <Segment>
+      <List horizontal>
+        <List.Item>
           <Contender
             ref="firstContender"
             track={this.state.firstContender}
             onChoose={() => this.onChooseContender(0)}
             onPlay={() => this.refs.secondContender.pause()}
           />
-        </Segment>
-        <Segment>
+        </List.Item>
+        <List.Item>
           <Contender
             ref="secondContender"
             track={this.state.secondContender}
             onChoose={() => this.onChooseContender(1)}
             onPlay={() => this.refs.firstContender.pause()}
           />
-        </Segment>
-      </Segment.Group>
+        </List.Item>
+      </List>
     )
   }
 }
