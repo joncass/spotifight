@@ -14,7 +14,7 @@ class TrackInfo extends Component {
   }
 
   trackInfoText() {
-    return `You chose ${this.track.name} by ${this.track.artist}`
+    return `${this.track.name} by ${this.track.artist}`
   }
 
   render() {

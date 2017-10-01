@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  Segment,
+  Card,
+  Icon,
+  Label,
 } from 'semantic-ui-react'
 
 import TrackInfo from './TrackInfo'
@@ -16,14 +18,19 @@ class Winner extends Component {
 
   render() {
     return (
-      <Segment>
+      <Card fluid>
         <TrackInfo
           track={this.track}
         />
-        <TrackPlayer
-          track={this.track}
-        />
-      </Segment>
+        <Label color="green">
+          <Icon name='winner' /> Winner
+        </Label>
+        <Card.Content>
+          <TrackPlayer
+            track={this.track}
+          />
+        </Card.Content>
+      </Card>
     )
   }
 }
