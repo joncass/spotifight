@@ -44,7 +44,7 @@ class TrackPlayer extends Component {
   render() {
     return (
       <Button.Group labeled>
-        <Button icon='play' onClick={() => this.play()} />
+        <Button icon='play' onClick={() => this.play()} positive={this.state.playStatus === 'PLAYING'} />
         <Button icon='pause' onClick={() => this.pause()} />
         <Button icon='stop' onClick={() => this.stop()} />
         <Sound
