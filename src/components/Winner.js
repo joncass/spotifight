@@ -1,57 +1,47 @@
 import React, { Component } from 'react'
-import Sound from 'react-sound'
+import PropTypes from 'prop-types'
 
 import {
-  Button,
-  Header,
-  Image,
-  Segment,
+  Card,
+  Icon,
+  Label,
 } from 'semantic-ui-react'
+
+import TrackInfo from './TrackInfo'
+import TrackPlayer from './TrackPlayer'
 
 class Winner extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      playStatus: 'STOPPED',
-      track: props.winner,
-    }
-  }
-
-  play() {
-    this.setState({ playStatus: 'PLAYING' })
-  }
-
-  pause() {
-    this.setState({ playStatus: 'PAUSED' })
-  }
-
-  stop() {
-    this.setState({ playStatus: 'STOPPED' })
+    this.track = this.props.track
   }
 
   render() {
     return (
-      <Segment>
-        <Image
-          src={this.state.track.imageURL}
-          size="large"
-          centered
+      <Card fluid>
+        <TrackInfo
+          track={this.track}
         />
-        <Header as='h3'>
-          You chose {this.state.track.name} by {this.state.track.artist}
-        </Header>
-        <Button.Group labeled>
-          <Button icon='play' onClick={this.play.bind(this)} />
-          <Button icon='pause' onClick={this.pause.bind(this)} />
-          <Button icon='stop' onClick={this.stop.bind(this)} />
-        </Button.Group>
-        <Sound
-          playStatus={Sound.status[this.state.playStatus]}
-          url={this.state.track.url}
-        />
-      </Segment>
+        <Label color="green">
+          <Icon name='winner' /> Winner
+        </Label>
+        <Card.Content>
+          <TrackPlayer
+            track={this.track}
+          />
+        </Card.Content>
+      </Card>
     )
   }
+}
+
+Winner.propTypes = {
+  track: PropTypes.shape({
+    artist: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  })
 }
 
 export default Winner
