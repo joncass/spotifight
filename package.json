@@ -19,6 +19,7 @@
     "spotify-web-api-node": "^2.5.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "react-test-renderer": "^16.0.0"
@@ -27,10 +28,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "eject": "react-scripts eject"
   },
   "jest": {
-    "collectCoverageFrom" : [
+    "collectCoverageFrom": [
       "src/**.js",
       "!src/index.js",
       "!src/registerServiceWorker.js",
