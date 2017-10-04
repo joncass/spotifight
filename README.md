@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/joncass/spotifight.svg?branch=master)](https://travis-ci.org/joncass/spotifight) [![Coverage Status](https://coveralls.io/repos/github/joncass/spotifight/badge.svg?branch=master)](https://coveralls.io/github/joncass/spotifight?branch=master)
+[![Build Status](https://travis-ci.org/joncass/spotifight.svg?branch=master)](https://travis-ci.org/joncass/spotifight) [![Coverage Status](https://coveralls.io/repos/github/joncass/spotifight/badge.svg?branch=master)](https://coveralls.io/github/joncass/spotifight?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/joncass/spotifight.svg)](https://greenkeeper.io/)
 
 # spotifight
 ## Synopsis
