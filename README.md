@@ -2,6 +2,8 @@
 
 # spotifight
 ## Synopsis
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/joncass/spotifight.svg)](https://greenkeeper.io/)
 In each matchup, choose a favorite between two songs. At the end, you'll have a winner!
 
 ## Live app
