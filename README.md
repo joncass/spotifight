@@ -5,7 +5,7 @@
 In each matchup, choose a favorite between two songs. At the end, you'll have a winner!
 
 ## Live app
-Coming soon!
+See the app live at [spotifight.me](http://www.spotifight.me/).
 
 ## Usage
 ### Initial
