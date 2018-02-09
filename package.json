@@ -11,7 +11,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14",
+    "react-scripts": "1.1.1",
     "react-sound": "^0.8.0",
     "rimraf": "^2.6.2",
     "semantic-ui-css": "^2.2.12",
